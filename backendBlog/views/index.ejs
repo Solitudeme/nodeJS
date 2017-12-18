@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <script type="text/javascript" src="/bootstrap/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+  </head>
+  <body>
+    <%- include('./header.ejs',{title:"后台管理系统",isShow:true,name:name})%>
+
+        <div class="container">
+        	<table class="table table-bordered table-striped">
+        	      <thead>
+        	        <tr>
+        	          <th>作者</th>
+        	          <th>标题</th>
+        	          <th>操作</th>
+        	        </tr>
+        	      </thead>
+        	      <tbody>
+        	    		<%for(var i=0;i<list.length;i++){%>
+    						<tr>
+    							<td><%= list[i].author%></td>
+    							<td><a href="/detail?id=<%= list[i]._id%>"><%= list[i].title%></a></td>
+    							<td>
+    								<a class="btn btn-default" href="/article/fixed?id=<%= list[i]._id%>" role="button">修改</a>
+    								<a class="btn btn-danger" href="/article/detail?id=<%= list[i]._id%>" role="button">删除</a>
+    							</td>
+    						</tr>
+        	    		<%}%>
+        	      </tbody>
+        	    </table>
+        </div>
+  </body>
+</html>

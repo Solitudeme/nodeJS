@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
+    <script type="text/javascript" src="/bootstrap/js/jquery-1.11.0.js"></script>
+    <script type="text/javascript" src="/bootstrap/js/bootstrap.js"></script>
+  </head>
+  <body>
+    <%- include("./header.ejs",{title:title,isShow:false})%>
+  
+  <div class="container">
+
+     <%if(isNew){%>
+    <form method="post" action="/article" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="exampleInputEmail1">标题</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="title">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">内容</label>
+        <textarea class="form-control" rows="6" name="content"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">图片</label>
+        <input type="file" name="photoname" />
+      </div>
+
+      <button type="submit" class="btn btn-default">发表</button>
+    
+    </form>
+
+       <%} else {%>
+    <form method="post" action="/article/fixed" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="exampleInputEmail1">更新标题</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="title" value="<%= info.title%>">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">更新内容</label>
+        <textarea class="form-control" rows="6" name="content"><%= info.content%></textarea>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">更新图片</label>
+        <input type="file" name="photoname" />
+      </div>
+      <input type="hidden" value="<%= info._id%>" name="id" />
+      <button type="submit" class="btn btn-default">更新发表</button>
+    </form>
+
+    <%}%>
+
+    
+  </div>
+
+  </body>
+</html>
